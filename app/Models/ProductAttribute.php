@@ -16,12 +16,21 @@ class ProductAttribute extends Model
      */
     protected $fillable = ['attribute_id', 'product_id', 'value', 'quantity', 'price'];
 
+    protected $casts  = [
+        'show' =>  'boolean',
+        'active'   =>  'boolean',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     /**

@@ -17,8 +17,12 @@ class CreateProductAttributesTable extends Migration
             $table->increments('id');
             $table->integer('quantity');
             $table->decimal('price')->nullable();
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
+            $table->boolean('show');
+            $table->boolean('active');
             $table->timestamps();
         });
     }

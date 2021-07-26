@@ -49,12 +49,10 @@ class ProductRepository extends BaseRepository implements ProductContract
     {
         try {
             return $this->findOneOrFail($id);
-
         } catch (ModelNotFoundException $e) {
 
             throw new ModelNotFoundException($e);
         }
-
     }
 
     /**
@@ -79,7 +77,6 @@ class ProductRepository extends BaseRepository implements ProductContract
                 $product->categories()->sync($params['categories']);
             }
             return $product;
-
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
         }
@@ -128,7 +125,7 @@ class ProductRepository extends BaseRepository implements ProductContract
      */
     public function findProductBySlug($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('slug', $slug)->with('attributes')->first();
 
         return $product;
     }

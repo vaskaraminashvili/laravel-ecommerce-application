@@ -76,8 +76,9 @@
                                                 <dl class="dlist-inline">
                                                     @foreach($attributes as $attribute)
                                                         @php
-                                                            if ($product->$attributes->count() > 0) {
-                                                                $attributeCheck = in_array($attribute->id, $product->attributes->pluck('attribute_id')->toArray())
+                                                            dd($product->attributes);
+                                                            if ($product->attributes->count() > 0) {
+                                                                $attributeCheck = in_array($attribute->id, $product->attributes->pluck('attribute_id')->toArray());
                                                             } else {
                                                                 $attributeCheck = [];
                                                             }
